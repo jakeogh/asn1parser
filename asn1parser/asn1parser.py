@@ -25,6 +25,7 @@ from icecream import ic
 from asn1crypto.core import Sequence
 from asn1crypto.core import BitString
 from asn1crypto import pem
+from asn1crypto.core import load
 
 from kcl.configops import click_read_config
 from kcl.configops import click_write_config_entry
@@ -73,7 +74,10 @@ def cli(paths, add, verbose, debug, ipython, null):
         ic(len(der_byte_string))
         ic(pem.detect(der_byte_string))
 
-        parsed = BitString.load(der_byte_string)
+        parsed = load(der_byte_string)
+
+
+        #parsed = BitString.load(der_byte_string)
         #parsed = Sequence.load(der_byte_string)
         serialized = parsed.dump()
         ic(len(serialized))

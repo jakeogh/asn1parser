@@ -23,6 +23,7 @@ from pathlib import Path
 from shutil import get_terminal_size
 from icecream import ic
 from asn1crypto.core import Sequence
+from asn1crypto.core import BitString
 
 from kcl.configops import click_read_config
 from kcl.configops import click_write_config_entry
@@ -69,7 +70,8 @@ def cli(paths, add, verbose, debug, ipython, null):
             der_byte_string = fh.read()
 
         ic(len(der_byte_string))
-        parsed = Sequence.load(der_byte_string)
+        parsed = BitString.load(der_byte_string)
+        #parsed = Sequence.load(der_byte_string)
         serialized = parsed.dump()
         ic(len(serialized))
 

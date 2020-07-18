@@ -26,7 +26,12 @@ from icecream import ic
 #from asn1crypto.core import BitString
 #from asn1crypto import pem
 #from asn1crypto.core import load
-from pyasn1.codec.der.decoder import decode
+
+#from pyasn1.codec.der.decoder import decode
+
+import asn1
+
+
 
 from kcl.configops import click_read_config
 from kcl.configops import click_write_config_entry
@@ -74,7 +79,11 @@ def cli(paths, add, verbose, debug, ipython, null):
 
         ic(len(asn1_bytes))
 
-        received_record, rest_of_substrate = decode(asn1_bytes)
+        #received_record, rest_of_substrate = decode(asn1_bytes)
+
+        decoder = asn1.Decoder()
+        decoder.start(asn1_bytes)
+        tag, value = decoder.read()
 
         #ic(pem.detect(asn1_bytes))
 

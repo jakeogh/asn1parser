@@ -68,9 +68,10 @@ def cli(paths, add, verbose, debug, ipython, null):
         with open(path, 'rb') as fh:
             der_byte_string = fh.read()
 
+        ic(len(der_byte_string))
         parsed = Sequence.load(der_byte_string)
         serialized = parsed.dump()
-        ic(len(seralized))
+        ic(len(serialized))
 
 
         if ipython:

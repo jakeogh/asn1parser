@@ -39,14 +39,14 @@ APP_NAME = 'asn1parser'
 
 
 # DONT CHANGE FUNC NAME
-#@click.command()
+@click.command()
 @click.argument("paths", type=str, nargs=-1)
 @click.option('--add', is_flag=True)
 @click.option('--verbose', is_flag=True)
 @click.option('--debug', is_flag=True)
 @click.option('--ipython', is_flag=True)
 @click.option("--null", is_flag=True)
-@click.group()
+#@click.group()
 def cli(paths, add, verbose, debug, ipython, null):
 
     byte = b'\n'
@@ -70,6 +70,7 @@ def cli(paths, add, verbose, debug, ipython, null):
 
         parsed = Sequence.load(der_byte_string)
         serialized = parsed.dump()
+        ic(len(seralized))
 
 
         if ipython:

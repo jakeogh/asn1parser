@@ -22,10 +22,11 @@ import click
 from pathlib import Path
 from shutil import get_terminal_size
 from icecream import ic
-from asn1crypto.core import Sequence
-from asn1crypto.core import BitString
-from asn1crypto import pem
-from asn1crypto.core import load
+#from asn1crypto.core import Sequence
+#from asn1crypto.core import BitString
+#from asn1crypto import pem
+#from asn1crypto.core import load
+from pyasn1.codec.der.decoder import decode
 
 from kcl.configops import click_read_config
 from kcl.configops import click_write_config_entry
@@ -72,15 +73,18 @@ def cli(paths, add, verbose, debug, ipython, null):
             asn1_bytes = fh.read()
 
         ic(len(asn1_bytes))
-        ic(pem.detect(asn1_bytes))
 
-        parsed = load(asn1_bytes)
+        received_record, rest_of_substrate = decode(asn1_bytes)
+
+        #ic(pem.detect(asn1_bytes))
+
+        #parsed = load(asn1_bytes)
 
 
-        #parsed = BitString.load(der_byte_string)
-        #parsed = Sequence.load(der_byte_string)
-        serialized = parsed.dump()
-        ic(len(serialized))
+        ##parsed = BitString.load(der_byte_string)
+        ##parsed = Sequence.load(der_byte_string)
+        #serialized = parsed.dump()
+        #ic(len(serialized))
 
 
         if ipython:

@@ -69,12 +69,12 @@ def cli(paths, add, verbose, debug, ipython, null):
             ic(index, path)
 
         with open(path, 'rb') as fh:
-            der_byte_string = fh.read()
+            asn1_bytes = fh.read()
 
-        ic(len(der_byte_string))
-        ic(pem.detect(der_byte_string))
+        ic(len(asn1_bytes))
+        ic(pem.detect(asn1_bytes))
 
-        parsed = load(der_byte_string)
+        parsed = load(asn1_bytes)
 
 
         #parsed = BitString.load(der_byte_string)
